@@ -1,15 +1,10 @@
 module Vault
   module Rails
     module JSONSerializer
-      DECODE_OPTIONS = {
-        max_nested:       false,
-        create_additions: false,
-      }.freeze
-
       def self.encode(raw)
         _init!
 
-        JSON.fast_generate(raw)
+        JSON.generate(raw)
       end
 
       def self.decode(raw)
@@ -17,7 +12,7 @@ module Vault
 
         return nil if raw == nil || raw == ""
 
-        JSON.parse(raw, DECODE_OPTIONS)
+        JSON.parse(raw)
       end
 
       protected
